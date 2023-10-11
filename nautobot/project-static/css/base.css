@@ -664,3 +664,44 @@ td span.hover_copy:hover .hover_copy_button {
     max-height: calc(100vh - 212px);
     overflow-y: scroll;
 }
+
+body {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 220px;
+    padding-top: 20px !important;
+}
+
+.navbar-fixed-top {
+    border-bottom-width: 0;
+    border-right-style: solid;
+    border-right-width: 1px;
+    bottom: 0;
+    flex: none;
+    margin-bottom: 0;
+    right: auto;
+    width: 220px;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.wrapper {
+    flex: 1;
+}
+
+.footer {
+    flex: none;
+    width: 100%;
+}
+
+.footer .row > :nth-child(2) {
+    width: 25%;
+}
+
+.footer .row > :nth-child(3) {
+    width: 41.66666667%;
+}

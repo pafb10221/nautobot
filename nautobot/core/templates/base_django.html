@@ -34,8 +34,10 @@
                 {{ message }}
             </div>
         {% endfor %}
-        {% block header %}{% endblock header %}
-        {% block content %}{% endblock content %}
+        <div id="shelly">
+            {% block header %}{% endblock header %}
+            {% block content %}{% endblock content %}
+        </div>
         <div class="push"></div>
         {% if request.user.is_authenticated or not "HIDE_RESTRICTED_UI"|settings_or_config %}
             {% if "BANNER_BOTTOM"|settings_or_config %}

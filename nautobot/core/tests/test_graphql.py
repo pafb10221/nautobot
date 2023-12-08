@@ -101,6 +101,17 @@ class GraphQLTestCase(TestCase):
         self.assertEqual(len(resp["data"]["query"]), Location.objects.all().count())
 
     @override_settings(EXEMPT_VIEW_PERMISSIONS=["*"])
+    def test_execute_query_with_custom_field_type_json(self):
+        custom_field = CustomField.objects.create(type=CustomFieldTypeChoices.TYPE_JSON, label="custom_json_field")
+        custom_field.content_types.set([ContentType.objects.get_for_model(Location)])
+        custom_field_data = {"custom_json_field": {"name": "Custom Example", "is_customfield": True}}
+        self.locations[0]._custom_field_data = custom_field_data
+        self.locations[0].save()
+        query = "query ($name: [String!]) { locations(name:$name) {name, _custom_field_data, cf_custom_json_field} }"
+        resp = execute_query(query, user=self.user, variables={"name": "Location-1"}).to_dict()
+        self.assertEqual(len(resp["data"]["locations"]["cf_custom_json_field"]), custom_field_data)
+
+    @override_settings(EXEMPT_VIEW_PERMISSIONS=["*"])
     def test_execute_query_with_variable(self):
         query = "query ($name: [String!]) { locations(name:$name) {name} }"
         resp = execute_query(query, user=self.user, variables={"name": "Location-1"}).to_dict()

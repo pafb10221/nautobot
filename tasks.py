@@ -112,26 +112,26 @@ def task(function=None, *args, **kwargs):
 
 def print_command(command, env=None):
     r"""
-    >>> command = "docker buildx build . --platform linux/amd64 --target final --load -f ./docker/Dockerfile --build-arg PYTHON_VER=3.9 -t networktocode/nautobot-py3.9:local --no-cache"
+    >>> command = "docker buildx build . --platform linux/amd64 --target final --load -f ./docker/Dockerfile --build-arg PYTHON_VER=3.10 -t networktocode/nautobot-py3.10:local --no-cache"
     >>> print_command(command)
     docker buildx build . \
         --platform linux/amd64 \
         --target final \
         --load \
         -f ./docker/Dockerfile \
-        --build-arg PYTHON_VER=3.9 \
-        -t networktocode/nautobot-py3.9:local \
+        --build-arg PYTHON_VER=3.10 \
+        -t networktocode/nautobot-py3.10:local \
         --no-cache
-    >>> env = {"PYTHON_VER": "3.9"}
+    >>> env = {"PYTHON_VER": "3.10"}
     >>> print_command(command, env=env)
-    PYTHON_VER=3.9 \
+    PYTHON_VER=3.10 \
     docker buildx build . \
         --platform linux/amd64 \
         --target final \
         --load \
         -f ./docker/Dockerfile \
-        --build-arg PYTHON_VER=3.9 \
-        -t networktocode/nautobot-py3.9:local \
+        --build-arg PYTHON_VER=3.10 \
+        -t networktocode/nautobot-py3.10:local \
         --no-cache
     """
     # Everywhere we have a `--foo`, a `-f`, a `--foo bar`, or a `-f bar`, wrap to a new line
@@ -351,7 +351,7 @@ def docker_push(context, branch, commit="", datestamp=""):
         f"{nautobot_version}-py{context.nautobot.python_ver}",
     ]
 
-    if context.nautobot.python_ver == "3.8":
+    if context.nautobot.python_ver == "3.10":
         docker_image_tags_main += ["stable", f"{nautobot_version}"]
     if branch == "main":
         docker_image_names = context.nautobot.docker_image_names_main

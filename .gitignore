@@ -32,6 +32,4 @@ htmlcov/*
 development/factory_dump.json
 node_modules
 nautobot/ui/generated
-nautobot_plugin
-hybridation_plugin
-cc_plugin
+hybridation

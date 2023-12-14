@@ -133,8 +133,6 @@ social-auth-core = {version = "~4.4.2", optional = true, extras = ["openidconnec
 social-auth-app-django = "~5.2.0"
 # Rendering of SVG images (for rack elevations, etc.)
 svgwrite = "~1.4.2"
-# Custom plugin for hybridation
-hybridation-plugin = {path = "hybridation_plugin"}
 
 [tool.poetry.extras]
 all = ["django-auth-ldap", "django-storages", "mysqlclient", "napalm", "social-auth-core"]
@@ -167,8 +165,6 @@ rich = "~13.4.2"
 towncrier = "~23.6.0"
 # Watch files for celery and mkdocs reload
 watchdog = "~3.0.0"
-# Custom plugin for hybridation
-hybridation-plugin = {path = "hybridation_plugin", develop = true}
 
 [tool.poetry.group.docs.dependencies]
 # Rendering docs to HTML

@@ -42,7 +42,7 @@ PLUGINS = [
     "hybridation"
 ]
 
-CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
+CORS_ALLOWED_ORIGINS = ["http://localhost:3000", "http://localhost:8000", "http://localhost:8080"]
 CORS_ALLOW_CREDENTIALS = True
 SESSION_COOKIE_SAMESITE = None
 

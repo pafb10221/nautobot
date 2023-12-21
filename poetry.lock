@@ -3109,6 +3109,31 @@ files = [
 ]
 
 [[package]]
+name = "pan-os-python"
+version = "1.11.0"
+description = "Framework for interacting with Palo Alto Networks devices via API"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+files = [
+    {file = "pan_os_python-1.11.0-py2.py3-none-any.whl", hash = "sha256:4f0fb65e2706587cf721b895bbf6b48de55ffd55f5b5139ada9d6565ed7a1616"},
+    {file = "pan_os_python-1.11.0.tar.gz", hash = "sha256:4caac2f100536bdc27df3d4f9ffe9ea74137e372b49ad16d6cf320ce13f96b00"},
+]
+
+[package.dependencies]
+pan-python = ">=0.17.0,<0.18.0"
+
+[[package]]
+name = "pan-python"
+version = "0.17.0"
+description = "Multi-tool set for Palo Alto Networks PAN-OS, Panorama, WildFire and AutoFocus"
+optional = false
+python-versions = "*"
+files = [
+    {file = "pan-python-0.17.0.tar.gz", hash = "sha256:9c074ea2f69a63996a6fefe8935d60dca61660e14715ac19d257ea9b1c41c6e2"},
+    {file = "pan_python-0.17.0-py2.py3-none-any.whl", hash = "sha256:f4674e40763c46d5933244b3059a57884e4e28205ef6d0f9ce2dc2013e3db010"},
+]
+
+[[package]]
 name = "paramiko"
 version = "3.4.0"
 description = "SSH2 protocol library"
@@ -5049,4 +5074,4 @@ sso = ["social-auth-core"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8,<3.12"
-content-hash = "be3aa61c409764e655b7214e6d74a1e1c6218e1e99f23d8f4de3650eed148dc8"
+content-hash = "f20a1b7627cb968f086dd19bcb0d45adcf15eb3767f858e3bec00a610d232f26"

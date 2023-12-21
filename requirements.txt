@@ -1,0 +1,7 @@
+nautobot-ssot 
+nautobot-golden-config 
+nautobot-plugin-nornir 
+pan-os-python 
+nautobot-device-onboarding 
+nautobot[sso]
+nautobot[napalm]

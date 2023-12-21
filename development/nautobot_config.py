@@ -36,11 +36,58 @@ LOGGING["loggers"]["nautobot"]["level"] = LOG_LEVEL  # noqa: F405
 #
 # Plugins
 #
-
 PLUGINS = [
-    "example_plugin",
-    "hybridation"
+    "hybridation",
+    "nautobot_firewall_models",
+    "nautobot_ssot",
+    "nautobot_golden_config",
+    "nautobot_plugin_nornir",
+    "nautobot_device_onboarding",
+    "example_plugin"
 ]
+
+PLUGINS_CONFIG = {
+    "nautobot_firewall_models": {
+        "default_status": "Active"
+    },
+    "nautobot_ssot": {
+        "hide_example_jobs": True
+    },
+    "nautobot_plugin_nornir": {
+        "use_config_context": {"secrets": True},
+        "nornir_settings": {
+            "credentials": "nautobot_plugin_nornir.plugins.credentials.nautobot_secrets.CredentialsNautobotSecrets",
+            "runner": {
+                "plugin": "threaded",
+                "options": {
+                    "num_workers": 20,
+                },
+            },
+        },
+    },
+    "nautobot_golden_config": {
+        "per_feature_bar_width": 0.15,
+        "per_feature_width": 13,
+        "per_feature_height": 4,
+        "enable_backup": True,
+        "enable_compliance": True,
+        "enable_intended": True,
+        "enable_sotagg": True,
+        "enable_plan": True,
+        "enable_deploy": True,
+        "enable_postprocessing": False,
+        "sot_agg_transposer": None,
+        "postprocessing_callables": [],
+        "postprocessing_subscribed": [],
+        "jinja_env": {
+            "undefined": "jinja2.StrictUndefined",
+            "trim_blocks": True,
+            "lstrip_blocks": False,
+        },
+        # "default_deploy_status": "Not Approved",
+        # "get_custom_compliance": "my.custom_compliance.func"
+    },
+}
 
 CORS_ALLOWED_ORIGINS = ["http://localhost:3000", "http://localhost:8000", "http://localhost:8080"]
 CORS_ALLOW_CREDENTIALS = True

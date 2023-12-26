@@ -5,7 +5,7 @@ from nautobot.core.settings import *  # noqa: F403
 from nautobot.core.settings_funcs import is_truthy
 
 SECRET_KEY = os.getenv("NAUTOBOT_SECRET_KEY", "012345678901234567890123456789012345678901234567890123456789")
-
+ALLOWED_HOSTS = ["*"]
 #
 # Debugging defaults to True rather than False for the development environment
 #
@@ -32,6 +32,41 @@ INSTALLATION_METRICS_ENABLED = is_truthy(os.getenv("NAUTOBOT_INSTALLATION_METRIC
 LOG_LEVEL = "DEBUG" if DEBUG else "INFO"
 LOGGING["loggers"]["nautobot"]["handlers"] = ["verbose_console" if DEBUG else "normal_console"]  # noqa: F405
 LOGGING["loggers"]["nautobot"]["level"] = LOG_LEVEL  # noqa: F405
+
+#
+# Plugins
+#
+
+DATABASES = {
+    'default': {
+        'NAME': 'nautobot',                         # Database name
+        'USER': 'nautobot',                         # Database username
+        'PASSWORD': 'nautobot',                     # Database password
+        'HOST': 'gateway.rancher-desktop.internal', # Database server
+        'PORT': '5432',                             # Database port (leave blank for default)
+        'CONN_MAX_AGE': 300,                        # Max database connection age
+        'ENGINE': 'django.db.backends.postgresql',  # Database driver ("mysql" or "postgresql")
+    }
+}
+ 
+ 
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://gateway.rancher-desktop.internal:6379/1",
+        "TIMEOUT": 300,
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            # Uncomment the following lines to configure TLS/SSL
+            # "CONNECTION_POOL_KWARGS": {
+            #     "ssl_cert_reqs": ssl.CERT_REQUIRED,
+            #     "ssl_ca_certs": "/opt/nautobot/redis/ca.crt",
+            #     "ssl_certfile": "/opt/nautobot/redis/tls.crt",
+            #     "ssl_keyfile": "/opt/nautobot/redis/tls.key",
+            # },
+        },
+    }
+}
 
 #
 # Plugins
@@ -89,7 +124,7 @@ PLUGINS_CONFIG = {
     },
 }
 
-CORS_ALLOWED_ORIGINS = ["http://localhost:3000", "http://localhost:8000", "http://localhost:8080"]
+CORS_ALLOWED_ORIGINS = ["http://localhost:3000", "http://localhost:8000"]
 CORS_ALLOW_CREDENTIALS = True
 SESSION_COOKIE_SAMESITE = None
 

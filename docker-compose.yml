@@ -1,0 +1,19 @@
+---
+version: "3.8"
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: nautobot
+      POSTGRES_PASSWORD: nautobot
+      POSTGRES_DB: nautobot
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+volumes:
+  postgres_data:

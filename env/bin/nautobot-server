@@ -1,0 +1,6 @@
+#!/home/pafb10221/nautobot/env/bin/python
+import sys
+from nautobot.core.cli import main
+
+if __name__ == '__main__':
+    sys.exit(main())

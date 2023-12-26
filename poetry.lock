@@ -1739,22 +1739,6 @@ http2 = ["h2 (>=3,<5)"]
 socks = ["socksio (==1.*)"]
 
 [[package]]
-name = "hybridation"
-version = "1.0.0"
-description = "Plugin for hybridation"
-optional = false
-python-versions = ">=3.8,<3.12"
-files = []
-develop = false
-
-[package.dependencies]
-nautobot = "2.0.5"
-
-[package.source]
-type = "directory"
-url = "hybridation"
-
-[[package]]
 name = "idna"
 version = "3.6"
 description = "Internationalized Domain Names in Applications (IDNA)"
@@ -5096,4 +5080,4 @@ sso = ["social-auth-core"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8,<3.12"
-content-hash = "0e77478d35b5dd2913b9c0fbe66bfb5b8983fc3f4c89f887571c7347b3eddab5"
+content-hash = "f20a1b7627cb968f086dd19bcb0d45adcf15eb3767f858e3bec00a610d232f26"

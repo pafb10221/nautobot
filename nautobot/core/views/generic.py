@@ -17,7 +17,7 @@ from django.forms import Form, ModelMultipleChoiceField, MultipleHiddenInput
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.html import format_html
-from django.utils.http import is_safe_url
+from django.utils.http import url_has_allowed_host_and_scheme
 from django.views.generic import View
 from django_tables2 import RequestConfig
 from rest_framework.exceptions import ParseError
@@ -432,7 +432,7 @@ class ObjectEditView(GetReturnURLMixin, ObjectPermissionRequiredMixin, View):
                     return redirect(request.get_full_path())
 
                 return_url = form.cleaned_data.get("return_url")
-                if return_url is not None and is_safe_url(url=return_url, allowed_hosts=request.get_host()):
+                if return_url is not None and url_has_allowed_host_and_scheme(url=return_url, allowed_hosts=request.get_host()):
                     return redirect(return_url)
                 else:
                     return redirect(self.get_return_url(request, obj))
@@ -516,7 +516,7 @@ class ObjectDeleteView(GetReturnURLMixin, ObjectPermissionRequiredMixin, View):
             messages.success(request, msg)
 
             return_url = form.cleaned_data.get("return_url")
-            if return_url is not None and is_safe_url(url=return_url, allowed_hosts=request.get_host()):
+            if return_url is not None and url_has_allowed_host_and_scheme(url=return_url, allowed_hosts=request.get_host()):
                 return redirect(return_url)
             else:
                 return redirect(self.get_return_url(request, obj))
@@ -758,7 +758,7 @@ class ObjectImportView(GetReturnURLMixin, ObjectPermissionRequiredMixin, View):
                     return redirect(request.get_full_path())
 
                 return_url = form.cleaned_data.get("return_url")
-                if return_url is not None and is_safe_url(url=return_url, allowed_hosts=request.get_host()):
+                if return_url is not None and url_has_allowed_host_and_scheme(url=return_url, allowed_hosts=request.get_host()):
                     return redirect(return_url)
                 else:
                     return redirect(self.get_return_url(request, obj))

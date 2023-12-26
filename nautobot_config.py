@@ -5,7 +5,7 @@ from nautobot.core.settings import *  # noqa: F403
 from nautobot.core.settings_funcs import is_truthy
 
 SECRET_KEY = os.getenv("NAUTOBOT_SECRET_KEY", "012345678901234567890123456789012345678901234567890123456789")
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ["*"]
 #
 # Debugging defaults to True rather than False for the development environment
 #
@@ -32,6 +32,20 @@ INSTALLATION_METRICS_ENABLED = is_truthy(os.getenv("NAUTOBOT_INSTALLATION_METRIC
 LOG_LEVEL = "DEBUG" if DEBUG else "INFO"
 LOGGING["loggers"]["nautobot"]["handlers"] = ["verbose_console" if DEBUG else "normal_console"]  # noqa: F405
 LOGGING["loggers"]["nautobot"]["level"] = LOG_LEVEL  # noqa: F405
+
+
+#
+# Plugins
+#
+PLUGINS = [
+    "nautobot_firewall_models",
+    "nautobot_ssot",
+    "nautobot_golden_config",
+    "nautobot_plugin_nornir",
+    "nautobot_device_onboarding",
+    "example_plugin"
+]
+
 
 #
 # Databases config
@@ -68,18 +82,6 @@ CACHES = {
     }
 }
 
-#
-# Plugins
-#
-PLUGINS = [
-    "hybridation",
-    "nautobot_firewall_models",
-    "nautobot_ssot",
-    "nautobot_golden_config",
-    "nautobot_plugin_nornir",
-    "nautobot_device_onboarding",
-    "example_plugin"
-]
 
 PLUGINS_CONFIG = {
     "nautobot_firewall_models": {

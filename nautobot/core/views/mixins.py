@@ -18,7 +18,7 @@ from django.shortcuts import get_object_or_404, redirect
 from django.template.loader import select_template, TemplateDoesNotExist
 from django.urls import reverse
 from django.urls.exceptions import NoReverseMatch
-from django.utils.http import is_safe_url
+from django.utils.http import url_has_allowed_host_and_scheme
 from django.utils.html import format_html
 from django.views.generic.edit import FormView
 
@@ -178,7 +178,7 @@ class GetReturnURLMixin:
         # First, see if `return_url` was specified as a query parameter or form data. Use this URL only if it's
         # considered safe.
         query_param = request.GET.get("return_url") or request.POST.get("return_url")
-        if query_param and is_safe_url(url=query_param, allowed_hosts=request.get_host()):
+        if query_param and url_has_allowed_host_and_scheme(url=query_param, allowed_hosts=request.get_host()):
             return query_param
 
         # Next, check if the object being modified (if any) has an absolute URL.
@@ -759,7 +759,7 @@ class ObjectEditViewMixin(NautobotViewSetMixin, mixins.CreateModelMixin, mixins.
                 self.success_url = request.get_full_path()
             else:
                 return_url = form.cleaned_data.get("return_url")
-                if return_url is not None and is_safe_url(url=return_url, allowed_hosts=request.get_host()):
+                if return_url is not None and url_has_allowed_host_and_scheme(url=return_url, allowed_hosts=request.get_host()):
                     self.success_url = return_url
                 else:
                     self.success_url = self.get_return_url(request, obj)

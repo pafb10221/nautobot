@@ -33,4 +33,4 @@ development/factory_dump.json
 node_modules
 nautobot/ui/generated
 hybridation
-env
+static/*

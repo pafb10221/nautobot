@@ -139,7 +139,7 @@ nautobot-golden-config = "^2.0.1"
 nautobot-plugin-nornir = "^2.0.0"
 nautobot-device-onboarding = "^3.0.1"
 pan-os-python = "^1.11.0"
-
+hybridation = {path = "/home/pafb10221/nautobot/hybridation"}
 
 [tool.poetry.extras]
 all = ["django-auth-ldap", "django-storages", "mysqlclient", "napalm", "social-auth-core"]
